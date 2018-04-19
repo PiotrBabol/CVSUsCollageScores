@@ -12,7 +12,9 @@ public class CSVfileAnalisis {
 
     public static void main(String[] args) {
 
-        try (Reader cin = new FileReader("C:\\Users\\P B\\IdeaProjects\\Sdasredniozaawansowane1\\src\\main\\resources\\MERGED2012_PP.csv")) {
+        try (Reader cin = new FileReader("C:\\Users\\P B\\IdeaProjects\\Sdasredniozaawansowane1\\src\\main\\resources\\MERGED2012_PP.csv"))
+        //file to big to put into repository on github 
+        {
             Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(cin);
             Map<String, ArrayList<Double>> mapOfData = new HashMap<>();
             for (CSVRecord record : records) {
