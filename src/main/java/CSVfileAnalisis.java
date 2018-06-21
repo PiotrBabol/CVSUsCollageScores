@@ -13,7 +13,7 @@ public class CSVfileAnalisis {
     public static void main(String[] args) {
 
         try (Reader cin = new FileReader("C:\\Users\\P B\\IdeaProjects\\Sdasredniozaawansowane1\\src\\main\\resources\\MERGED2012_PP.csv"))
-        //file to big to put into repository on github 
+        //file to big to put into repository on github
         {
             Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(cin);
             Map<String, ArrayList<Double>> mapOfData = new HashMap<>();
@@ -22,7 +22,6 @@ public class CSVfileAnalisis {
                 if (record.get("SAT_AVG_ALL").equals("NULL")) {
                     continue;
                 }
-                // System.out.println(record.get("STABBR"));
                 if (!mapOfData.containsKey(record.get("STABBR"))) {
                     ArrayList<Double> objects = new ArrayList<>();
                     objects.add(1.0);//size
@@ -32,7 +31,7 @@ public class CSVfileAnalisis {
                     mapOfData.put(record.get("STABBR"), objects);
 
                 } else {
-                    ArrayList<Double> objects = mapOfData.get(record.get("STABBR")); //musisz pobrac najpierw arrayliste z mapy
+                    ArrayList<Double> objects = mapOfData.get(record.get("STABBR"));
                     Double first = objects.get(0);
                     Double second = objects.get(1);
                     Double third = objects.get(2);
@@ -63,38 +62,15 @@ public class CSVfileAnalisis {
                 String object = entry.getKey();
                 objects = mapOfData.get(object);
                 printer.printRecord(object, objects.get(0), objects.get(1), objects.get(2), objects.get(3));
-//                printer.printRecords(object, objects.get(0), objects.get(1), objects.get(2), objects.get(3)); one after another
             }
             printer.flush();
             printer.close();
-
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
-
-
-   /* public static ArrayList<Double> data(String str) {
-        int size = 0;
-        int avgValue = 0;
-        int minValue = 0;
-        int maxValue = 0;
-
-        ArrayList<Double> doubles = new ArrayList<>();
-        double currentValue = Double.parseDouble(str);
-        double value = currentValue;
-        doubles.add((double) size++);
-        doubles.add();
-        doubles.add();
-        doubles.add();
-
-        return doubles;
-    }
-*/
 }
 
